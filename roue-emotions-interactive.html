@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roue des Émotions - Vision Vibrancy</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🌈 Roue des Émotions</h1>
+    <button id="toggleMode">Passer en mode enfants</button>
+    <div class="wheel" id="wheel"></div>
+    <div class="guide" id="guide"></div>
+    <a href="https://visionvibrancy.com" class="home-button">Retourner sur le site Vision Vibrancy</a>
+  </div>
+
+  <script>
+    const emotionsAdultes = [
+      { nom: "Joie", guide: "Accueille cette vibration, elle t’indique un alignement intérieur. Nourris-la avec gratitude et partage." },
+      { nom: "Tristesse", guide: "Elle te parle de perte ou de besoin de douceur. Autorise-toi à ralentir, à écouter." },
+      { nom: "Colère", guide: "Elle signale une injustice ou un besoin non respecté. Elle est ta boussole vers tes limites." },
+      { nom: "Peur", guide: "Elle cherche à te protéger. Écoute-la avec présence sans lui donner les clés." },
+      { nom: "Dégoût", guide: "Il t’alerte sur ce qui ne te convient plus. Prends-en compte, sans rester figé." },
+      { nom: "Surprise", guide: "Elle ouvre une porte nouvelle. Sois curieuse, même dans l’inattendu." },
+      { nom: "Amour", guide: "C’est ton état naturel. Tu peux t’y reconnecter à tout moment." },
+      { nom: "Honte", guide: "Elle parle de ton image intérieure. Tu n’as rien à cacher." },
+      { nom: "Culpabilité", guide: "Elle révèle un conflit de valeur. Pardonne-toi et réajuste." },
+      { nom: "Fierté", guide: "Elle te montre ce que tu honores en toi. Laisse-la rayonner." },
+      { nom: "Ennui", guide: "Un appel à créer du nouveau. Que peux-tu explorer aujourd’hui ?" },
+      { nom: "Espoir", guide: "Il t’aide à garder le cap. Appuie-toi sur lui, avec confiance." },
+    ];
+
+    const emotionsEnfants = [
+      { nom: "😊 Joie", guide: "Tu ressens du bonheur ! Partage-le autour de toi 💛" },
+      { nom: "😢 Tristesse", guide: "Tu peux pleurer si tu veux. Ça fait du bien 💧" },
+      { nom: "😡 Colère", guide: "Tu as besoin de dire stop ? Respire fort 🔥" },
+      { nom: "😨 Peur", guide: "Prends un adulte par la main et parle-lui 👋" },
+      { nom: "😖 Dégoût", guide: "Tu n’aimes pas ça ? Tu peux dire non 💬" },
+      { nom: "😲 Surprise", guide: "Wahou, c’est inattendu ! Respire et observe 🌟" },
+      { nom: "❤️ Amour", guide: "Tu es entourée de douceur. Câline-toi 🧸" },
+      { nom: "🙈 Honte", guide: "Tout va bien. Tu as le droit d’être toi 💫" },
+      { nom: "😔 Culpabilité", guide: "Tu peux dire pardon et te pardonner 💕" },
+      { nom: "🎉 Fierté", guide: "Bravo ! Tu peux célébrer 🎊" },
+      { nom: "😐 Ennui", guide: "Et si tu inventais un jeu ? 🎨" },
+      { nom: "🌈 Espoir", guide: "Demande un câlin et imagine un arc-en-ciel 🌈" },
+    ];
+
+    let modeEnfant = false;
+
+    function renderWheel() {
+      const wheel = document.getElementById("wheel");
+      const emotions = modeEnfant ? emotionsEnfants : emotionsAdultes;
+      wheel.innerHTML = "";
+      emotions.forEach((emo, i) => {
+        const angle = (i / emotions.length) * 360;
+        const btn = document.createElement("button");
+        btn.textContent = emo.nom;
+        btn.className = "emotion-button";
+        btn.style.transform = `rotate(${angle}deg) translate(10em) rotate(-${angle}deg)`;
+        btn.onclick = () => showGuide(emo.guide);
+        wheel.appendChild(btn);
+      });
+    }
+
+    function showGuide(text) {
+      const guide = document.getElementById("guide");
+      guide.innerHTML = `<p>${text}</p>`;
+      guide.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById("toggleMode").onclick = () => {
+      modeEnfant = !modeEnfant;
+      document.getElementById("toggleMode").textContent = modeEnfant ? "Passer en mode adultes" : "Passer en mode enfants";
+      renderWheel();
+    };
+
+    window.onload = renderWheel;
+  </script>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #f8f6fc, #f0ebf4);
+      color: #3d275d;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .wheel {
+      position: relative;
+      width: 22em;
+      height: 22em;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: #f3e5f5;
+      border: 4px dashed #ce93d8;
+      margin-bottom: 30px;
+    }
+
+    .emotion-button {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-origin: center;
+      padding: 8px 10px;
+      border: none;
+      background: #fff;
+      color: #6a1b9a;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .emotion-button:hover {
+      background: #e1bee7;
+    }
+
+    .guide {
+      margin-top: 20px;
+      font-size: 1.2em;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(156, 39, 176, 0.1);
+    }
+
+    .home-button {
+      margin-top: 40px;
+      text-decoration: none;
+      background: linear-gradient(to right, #9c27b0, #ff9800, #ffeb3b);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .home-button:hover {
+      background: linear-gradient(to right, #7b1fa2, #f57c00, #fdd835);
+    }
+  </style>
+</body>
+</html>
