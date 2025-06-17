@@ -42,11 +42,17 @@
       font-weight: 600;
     }
 
-    input {
+    input[type="text"],
+    input[type="email"] {
       padding: 12px;
       border: 1px solid #ccc;
       border-radius: 10px;
       font-size: 1em;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.2);
     }
 
     button {
@@ -79,6 +85,11 @@
 
       <label for="email">Adresse email</label>
       <input type="email" id="email" name="EMAIL" required />
+
+      <label style="margin-top:15px;">
+        <input type="checkbox" name="newsletter" checked required />
+        J'accepte de recevoir la newsletter ✨ <strong>Créatrices en Action</strong>
+      </label>
 
       <button type="submit">🎁 Accéder à la roue</button>
     </form>
