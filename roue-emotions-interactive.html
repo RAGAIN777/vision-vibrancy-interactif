@@ -90,7 +90,7 @@
   <h1>🌈 Roue des Émotions</h1>
   <button id="toggleMode">Passer en mode enfants</button>
   <div class="wheel" id="wheel"></div>
-  <div class="guide" id="guide"></div>
+  <div class="guide" id="guide"><p>Sélectionne une émotion pour découvrir son message 💜</p></div>
   <a href="https://visionvibrancy.com" class="home-button">Retourner sur le site Vision Vibrancy</a>
 
   <script>
@@ -108,21 +108,24 @@
       { nom: "Ennui", guide: "Un appel à créer du nouveau. Que peux-tu explorer aujourd’hui ?" },
       { nom: "Espoir", guide: "Il t’aide à garder le cap. Appuie-toi sur lui, avec confiance." },
     ];
+
     const emotionsEnfants = [
       { nom: "😊 Joie", guide: "Tu ressens du bonheur ! Partage-le autour de toi 💛" },
-      { nom: "😢 Tristesse", guide: "Tu peux pleurer si tu veux. Ça fait du bien 😧" },
+      { nom: "😢 Tristesse", guide: "Tu peux pleurer si tu veux. Ça fait du bien 💧" },
       { nom: "😡 Colère", guide: "Tu as besoin de dire stop ? Respire fort 🔥" },
       { nom: "😨 Peur", guide: "Prends un adulte par la main et parle-lui 👋" },
-      { nom: "😖 Dégoût", guide: "Tu n’aimes pas ça ? Tu peux dire non 🔊" },
+      { nom: "😖 Dégoût", guide: "Tu n’aimes pas ça ? Tu peux dire non 💬" },
       { nom: "😲 Surprise", guide: "Wahou, c’est inattendu ! Respire et observe 🌟" },
-      { nom: "❤️ Amour", guide: "Tu es entourée de douceur. Câline-toi 🦸" },
-      { nom: "🙈 Honte", guide: "Tout va bien. Tu as le droit d’être toi 🌛" },
+      { nom: "❤️ Amour", guide: "Tu es entourée de douceur. Câline-toi 🧸" },
+      { nom: "🙈 Honte", guide: "Tout va bien. Tu as le droit d’être toi 💫" },
       { nom: "😔 Culpabilité", guide: "Tu peux dire pardon et te pardonner 💕" },
       { nom: "🎉 Fierté", guide: "Bravo ! Tu peux célébrer 🎊" },
       { nom: "😐 Ennui", guide: "Et si tu inventais un jeu ? 🎨" },
       { nom: "🌈 Espoir", guide: "Demande un câlin et imagine un arc-en-ciel 🌈" },
     ];
+
     let modeEnfant = false;
+
     function renderWheel() {
       const wheel = document.getElementById("wheel");
       const emotions = modeEnfant ? emotionsEnfants : emotionsAdultes;
@@ -137,17 +140,21 @@
         wheel.appendChild(btn);
       });
     }
+
     function showGuide(text) {
       const guide = document.getElementById("guide");
       guide.innerHTML = `<p>${text}</p>`;
       guide.scrollIntoView({ behavior: 'smooth' });
     }
+
     document.getElementById("toggleMode").onclick = () => {
       modeEnfant = !modeEnfant;
       document.getElementById("toggleMode").textContent = modeEnfant ? "Passer en mode adultes" : "Passer en mode enfants";
       renderWheel();
     };
+
     window.onload = renderWheel;
   </script>
 </body>
 </html>
+
