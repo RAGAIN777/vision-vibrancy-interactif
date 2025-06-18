@@ -1,0 +1,140 @@
+/* FICHIER : assets/style.css */
+
+/* RESET ET FOND GÉNÉRAL */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #f8f6fc, #f0ebf4);
+  color: #3d275d;
+  text-align: center;
+  padding: 20px;
+}
+
+/* FORMULAIRE / OVERLAY */
+.lead-magnet-overlay {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(156, 39, 176, 0.2);
+  max-width: 450px;
+  margin: 20px auto;
+}
+
+.form-title {
+  font-size: 1.8em;
+  color: #9c27b0;
+  margin-bottom: 10px;
+}
+.form-subtitle {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 600;
+}
+.form-group input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+  width: 100%;
+}
+.submit-btn {
+  margin-top: 20px;
+  padding: 15px;
+  background: linear-gradient(135deg, #9c27b0, #ff9800, #ffeb3b);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.submit-btn:hover {
+  transform: scale(1.02);
+}
+
+/* ROUE DES ÉMOTIONS */
+.wheel {
+  position: relative;
+  width: 22em;
+  height: 22em;
+  margin: 40px auto;
+  border-radius: 50%;
+  background: #f3e5f5;
+  border: 4px dashed #ce93d8;
+}
+.emotion-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  padding: 8px 10px;
+  border: none;
+  background: #fff;
+  color: #6a1b9a;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.emotion-button:hover {
+  background: #e1bee7;
+}
+
+/* GUIDE ET BOUTON RETOUR */
+.guide {
+  margin-top: 20px;
+  font-size: 1.2em;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(156, 39, 176, 0.1);
+}
+.home-button {
+  margin-top: 40px;
+  text-decoration: none;
+  background: linear-gradient(to right, #9c27b0, #ff9800, #ffeb3b);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 30px;
+  font-weight: bold;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+.home-button:hover {
+  background: linear-gradient(to right, #7b1fa2, #f57c00, #fdd835);
+}
+
+/* MESSAGE DÉBLOCAGE */
+.unlock-message {
+  color: #6a1b9a;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+/* BOUTON DE BASCULE ENFANT/ADULTE */
+#toggleMode {
+  margin: 10px auto;
+  background-color: #ce93d8;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#toggleMode:hover {
+  background-color: #ab47bc;
+}
