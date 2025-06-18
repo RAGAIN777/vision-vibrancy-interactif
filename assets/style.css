@@ -84,6 +84,7 @@ body {
   cursor: pointer;
   transition: background 0.3s ease;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 0.9em;
 }
 .emotion-button:hover {
   background: #e1bee7;
@@ -100,6 +101,7 @@ body {
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 0 20px rgba(156, 39, 176, 0.1);
+  text-align: left;
 }
 .home-button {
   margin-top: 40px;
@@ -137,4 +139,64 @@ body {
 }
 #toggleMode:hover {
   background-color: #ab47bc;
+}
+
+/* TITRE PRINCIPAL */
+h1 {
+  color: #6a1b9a;
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+/* SOUS-TITRE */
+p.subtitle {
+  font-size: 1.1em;
+  color: #5e3a85;
+  margin-bottom: 30px;
+}
+
+/* SECTION FINALE */
+.final-section {
+  margin-top: 60px;
+  background: #f8f6fc;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(156, 39, 176, 0.05);
+}
+.final-section h3 {
+  color: #6a1b9a;
+  font-size: 1.6em;
+  margin-bottom: 10px;
+}
+.final-section p {
+  font-size: 1em;
+  color: #3d275d;
+  margin-bottom: 20px;
+}
+
+/* BOUTON DANS LE FORMULAIRE */
+.checkbox-group {
+  text-align: left;
+  margin-top: 15px;
+  font-size: 0.95em;
+  color: #3d275d;
+}
+.checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.4em;
+}
+.checkbox-item input[type="checkbox"] {
+  transform: scale(1.3);
+  margin-top: 2px;
+}
+.checkbox-item label {
+  font-weight: 500;
+}
+.checkbox-item small {
+  display: block;
+  font-size: 0.8em;
+  color: #666;
+  margin-top: 4px;
 }
