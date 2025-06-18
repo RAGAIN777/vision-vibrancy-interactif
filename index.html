@@ -1,44 +1,213 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Guide Interactif des Émotions - Vision Vibrancy</title>
-    <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide Interactif des Émotions - Vision Vibrancy</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #f8f6fc, #f0ebf4);
+      color: #3d275d;
+      text-align: center;
+      padding: 20px;
+    }
+    .lead-magnet-overlay {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(156, 39, 176, 0.2);
+      max-width: 450px;
+      margin: 20px auto;
+    }
+    .form-title { font-size: 1.8em; color: #9c27b0; margin-bottom: 10px; }
+    .form-subtitle { margin-bottom: 20px; }
+    .form-group label { display: block; margin: 10px 0 5px; font-weight: 600; }
+    .form-group input {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1em;
+      width: 100%;
+    }
+    .submit-btn {
+      margin-top: 20px;
+      padding: 15px;
+      background: linear-gradient(135deg, #9c27b0, #ff9800, #ffeb3b);
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .submit-btn:hover { transform: scale(1.02); }
+    .wheel { position: relative; width: 22em; height: 22em; margin: 40px auto; border-radius: 50%; background: #f3e5f5; border: 4px dashed #ce93d8; }
+    .emotion-button {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-origin: center;
+      padding: 8px 10px;
+      border: none;
+      background: #fff;
+      color: #6a1b9a;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .emotion-button:hover { background: #e1bee7; }
+    .guide {
+      margin-top: 20px;
+      font-size: 1.2em;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(156, 39, 176, 0.1);
+    }
+    .home-button {
+      margin-top: 40px;
+      text-decoration: none;
+      background: linear-gradient(to right, #9c27b0, #ff9800, #ffeb3b);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+    .home-button:hover {
+      background: linear-gradient(to right, #7b1fa2, #f57c00, #fdd835);
+    }
+  </style>
 </head>
 <body>
-    <!-- Conteneur principal -->
-    <div id="leadMagnetOverlay" class="lead-magnet-overlay">
-        <iframe src="formulaire-google-sheets.html" frameborder="0" width="100%" height="100%" style="border:none;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.2);"></iframe>
-    </div>
+  <div class="lead-magnet-overlay">
+    <form id="emotion-form">
+      <h2 class="form-title">🌟 Guide Interactif des Émotions</h2>
+      <p class="form-subtitle">Découvrez les secrets pour comprendre et maîtriser vos émotions</p>
 
-    <div id="mainContent" class="main-content">
-        <div class="container">
-            <div class="header">
-                <h1 class="main-title">Guide Interactif des Émotions</h1>
-                <p class="subtitle">Découvrez et accueillez vos émotions avec bienveillance</p>
-            </div>
-            <div class="toggle-container">
-                <button class="toggle-btn active" onclick="showAdultWheel()">👥 Version Adultes</button>
-                <button class="toggle-btn" onclick="showChildrenWheel()">👶 Version Enfants</button>
-            </div>
-            <div id="wheel-container"></div>
-            <div id="emotion-guide-container"></div>
-            <div class="final-section">
-                <div class="final-content">
-                    <h3>✨ Continuez votre voyage émotionnel</h3>
-                    <p>Découvrez tous nos outils et accompagnements pour une vie émotionnelle épanouie</p>
-                    <a href="https://visionvibrancy.com" target="_blank" class="welcome-button">🌟 Visiter Vision Vibrancy</a>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div class="form-group">
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" required>
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom">
+        <label for="email">Adresse email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
 
-    <!-- ✅ Intégration propre via <iframe> -->
-    <!-- ✅ Structure respectée avec assets/style.css, assets/emotions.js -->
-    <!-- ✅ Boutons bascule version adulte/enfant -->
-    <!-- ✅ Lien vers VisionVibrancy.com en bas -->
+      <label>
+        <input type="checkbox" name="newsletter" checked>
+        J'accepte de recevoir la newsletter ✨ <strong>Créatrices en Action</strong>
+      </label>
 
-    <script src="assets/emotions.js"></script>
+      <button type="submit" class="submit-btn">🎁 Accéder à la roue</button>
+      <div id="unlockMessage" class="unlock-message" style="display:none;margin-top:20px;">🎉 Accès débloqué !</div>
+    </form>
+  </div>
+
+  <div id="mainContent" class="main-content" style="display:none;">
+    <h1>🌈 Roue des Émotions</h1>
+    <button id="toggleMode">Passer en mode enfants</button>
+    <div class="wheel" id="wheel"></div>
+    <div class="guide" id="guide"><p>Sélectionne une émotion pour découvrir son message 💜</p></div>
+    <a href="https://visionvibrancy.com" class="home-button">Retourner sur le site Vision Vibrancy</a>
+  </div>
+
+  <script>
+    const emotionsAdultes = [
+      { nom: "Joie", guide: "Accueille cette vibration, elle t’indique un alignement intérieur." },
+      { nom: "Tristesse", guide: "Elle te parle de perte ou de besoin de douceur." },
+      { nom: "Colère", guide: "Elle signale une injustice ou un besoin non respecté." },
+      { nom: "Peur", guide: "Elle cherche à te protéger." },
+      { nom: "Dégoût", guide: "Il t’alerte sur ce qui ne te convient plus." },
+      { nom: "Surprise", guide: "Elle ouvre une porte nouvelle." },
+      { nom: "Amour", guide: "C’est ton état naturel." },
+      { nom: "Honte", guide: "Elle parle de ton image intérieure." },
+      { nom: "Culpabilité", guide: "Elle révèle un conflit de valeur." },
+      { nom: "Fierté", guide: "Elle te montre ce que tu honores en toi." },
+      { nom: "Ennui", guide: "Un appel à créer du nouveau." },
+      { nom: "Espoir", guide: "Il t’aide à garder le cap." },
+    ];
+
+    const emotionsEnfants = [
+      { nom: "😊 Joie", guide: "Tu ressens du bonheur ! Partage-le autour de toi 💛" },
+      { nom: "😢 Tristesse", guide: "Tu peux pleurer si tu veux. Ça fait du bien 💧" },
+      { nom: "😡 Colère", guide: "Tu as besoin de dire stop ? Respire fort 🔥" },
+      { nom: "😨 Peur", guide: "Prends un adulte par la main et parle-lui 👋" },
+      { nom: "😖 Dégoût", guide: "Tu n’aimes pas ça ? Tu peux dire non 💬" },
+      { nom: "😲 Surprise", guide: "Wahou, c’est inattendu ! Respire et observe 🌟" },
+      { nom: "❤️ Amour", guide: "Tu es entourée de douceur. Câline-toi 🧸" },
+      { nom: "🙈 Honte", guide: "Tout va bien. Tu as le droit d’être toi 💫" },
+      { nom: "😔 Culpabilité", guide: "Tu peux dire pardon et te pardonner 💕" },
+      { nom: "🎉 Fierté", guide: "Bravo ! Tu peux célébrer 🎊" },
+      { nom: "😐 Ennui", guide: "Et si tu inventais un jeu ? 🎨" },
+      { nom: "🌈 Espoir", guide: "Demande un câlin et imagine un arc-en-ciel 🌈" },
+    ];
+
+    let modeEnfant = false;
+
+    function renderWheel() {
+      const wheel = document.getElementById("wheel");
+      const emotions = modeEnfant ? emotionsEnfants : emotionsAdultes;
+      wheel.innerHTML = "";
+      emotions.forEach((emo, i) => {
+        const angle = (i / emotions.length) * 360;
+        const btn = document.createElement("button");
+        btn.textContent = emo.nom;
+        btn.className = "emotion-button";
+        btn.style.transform = `rotate(${angle}deg) translate(10em) rotate(-${angle}deg)`;
+        btn.onclick = () => showGuide(emo.guide);
+        wheel.appendChild(btn);
+      });
+    }
+
+    function showGuide(text) {
+      const guide = document.getElementById("guide");
+      guide.innerHTML = `<p>${text}</p>`;
+      guide.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById("toggleMode").onclick = () => {
+      modeEnfant = !modeEnfant;
+      document.getElementById("toggleMode").textContent = modeEnfant ? "Passer en mode adultes" : "Passer en mode enfants";
+      renderWheel();
+    };
+
+    document.getElementById("emotion-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const prenom = document.getElementById("prenom").value;
+      const nom = document.getElementById("nom").value;
+      const email = document.getElementById("email").value;
+      const newsletter = document.getElementById("newsletter").checked ? "Oui" : "Non";
+
+      if (!email || !prenom) {
+        alert("Veuillez remplir tous les champs obligatoires");
+        return;
+      }
+
+      fetch("https://script.google.com/macros/s/AKfycbzkVmYXU89L_TYAkd7nb6PTUOezYMHdvWevMQKjCDIjI6eTGseRfjPmSCFEKYgQB4MF/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ prenom, nom, email, newsletter })
+      }).then(() => {
+        document.getElementById("unlockMessage").style.display = "block";
+        document.getElementById("emotion-form").style.display = "none";
+        setTimeout(() => {
+          document.getElementById("leadMagnetOverlay").style.display = "none";
+          document.getElementById("mainContent").style.display = "block";
+          renderWheel();
+        }, 3000);
+      });
+    });
+  </script>
 </body>
 </html>
