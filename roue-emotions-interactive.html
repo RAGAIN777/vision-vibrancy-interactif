@@ -4,93 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roue des Émotions - Vision Vibrancy</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #f8f6fc, #f0ebf4);
-      color: #3d275d;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      margin-bottom: 20px;
-      font-size: 2em;
-    }
-    .wheel {
-      position: relative;
-      width: 22em;
-      height: 22em;
-      margin: 0 auto;
-      border-radius: 50%;
-      background: #f3e5f5;
-      border: 4px dashed #ce93d8;
-      margin-bottom: 30px;
-    }
-    .emotion-button {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform-origin: center;
-      padding: 8px 10px;
-      border: none;
-      background: #fff;
-      color: #6a1b9a;
-      font-weight: bold;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .emotion-button:hover {
-      background: #e1bee7;
-    }
-    .guide {
-      margin-top: 20px;
-      font-size: 1.2em;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(156, 39, 176, 0.1);
-    }
-    #toggleMode {
-      margin: 10px auto;
-      background-color: #ce93d8;
-      border: none;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .home-button {
-      margin-top: 40px;
-      text-decoration: none;
-      background: linear-gradient(to right, #9c27b0, #ff9800, #ffeb3b);
-      color: white;
-      padding: 15px 25px;
-      border-radius: 30px;
-      font-weight: bold;
-      display: inline-block;
-      transition: background 0.3s ease;
-    }
-    .home-button:hover {
-      background: linear-gradient(to right, #7b1fa2, #f57c00, #fdd835);
-    }
-  </style>
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
   <h1>🌈 Roue des Émotions</h1>
   <button id="toggleMode">Passer en mode enfants</button>
+
   <div class="wheel" id="wheel"></div>
-  <div class="guide" id="guide"><p>Sélectionne une émotion pour découvrir son message 💜</p></div>
+
+  <div class="guide" id="guide">
+    <p>Sélectionne une émotion pour découvrir son message 💜</p>
+  </div>
+
   <a href="https://visionvibrancy.com" class="home-button">Retourner sur le site Vision Vibrancy</a>
 
   <script>
@@ -149,7 +74,9 @@
 
     document.getElementById("toggleMode").onclick = () => {
       modeEnfant = !modeEnfant;
-      document.getElementById("toggleMode").textContent = modeEnfant ? "Passer en mode adultes" : "Passer en mode enfants";
+      document.getElementById("toggleMode").textContent = modeEnfant
+        ? "Passer en mode adultes"
+        : "Passer en mode enfants";
       renderWheel();
     };
 
@@ -157,4 +84,3 @@
   </script>
 </body>
 </html>
-
