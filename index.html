@@ -1,11 +1,44 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Vision Vibrancy - En construction</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Guide Interactif des Émotions - Vision Vibrancy</title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <h1>Site en cours de création ✨</h1>
-  <p>Roue des émotions, formulaire et newsletter arrivent bientôt !</p>
+    <!-- Conteneur principal -->
+    <div id="leadMagnetOverlay" class="lead-magnet-overlay">
+        <iframe src="formulaire-google-sheets.html" frameborder="0" width="100%" height="100%" style="border:none;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.2);"></iframe>
+    </div>
+
+    <div id="mainContent" class="main-content">
+        <div class="container">
+            <div class="header">
+                <h1 class="main-title">Guide Interactif des Émotions</h1>
+                <p class="subtitle">Découvrez et accueillez vos émotions avec bienveillance</p>
+            </div>
+            <div class="toggle-container">
+                <button class="toggle-btn active" onclick="showAdultWheel()">👥 Version Adultes</button>
+                <button class="toggle-btn" onclick="showChildrenWheel()">👶 Version Enfants</button>
+            </div>
+            <div id="wheel-container"></div>
+            <div id="emotion-guide-container"></div>
+            <div class="final-section">
+                <div class="final-content">
+                    <h3>✨ Continuez votre voyage émotionnel</h3>
+                    <p>Découvrez tous nos outils et accompagnements pour une vie émotionnelle épanouie</p>
+                    <a href="https://visionvibrancy.com" target="_blank" class="welcome-button">🌟 Visiter Vision Vibrancy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ Intégration propre via <iframe> -->
+    <!-- ✅ Structure respectée avec assets/style.css, assets/emotions.js -->
+    <!-- ✅ Boutons bascule version adulte/enfant -->
+    <!-- ✅ Lien vers VisionVibrancy.com en bas -->
+
+    <script src="assets/emotions.js"></script>
 </body>
 </html>
