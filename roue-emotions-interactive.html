@@ -1,86 +1,140 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roue des Émotions - Vision Vibrancy</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <h1>🌈 Roue des Émotions</h1>
-  <button id="toggleMode">Passer en mode enfants</button>
-
-  <div class="wheel" id="wheel"></div>
-
-  <div class="guide" id="guide">
-    <p>Sélectionne une émotion pour découvrir son message 💜</p>
+  <div class="lead-magnet-overlay">
+    <h1 class="form-title">Découvre ta boussole émotionnelle</h1>
+    <p class="form-subtitle">Remplis ce formulaire pour accéder à la roue interactive</p>
+    <form id="emotionForm">
+      <div class="form-group">
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" required>
+      </div>
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="checkbox-group">
+        <div class="checkbox-item">
+          <input type="checkbox" id="newsletter" name="newsletter" checked>
+          <label for="newsletter">Je souhaite recevoir la newsletter <strong>Créatrices en action</strong>.</label>
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">Accéder à la roue</button>
+    </form>
+    <p class="unlock-message" id="message-validation"></p>
   </div>
 
-  <a href="https://visionvibrancy.com" class="home-button">Retourner sur le site Vision Vibrancy</a>
+  <div class="wheel" id="emotionWheel" style="display:none;">
+    <!-- Boutons des émotions (à 360° répartis dans la roue) -->
+    <!-- Injectés dynamiquement via JS selon mode enfant/adulte -->
+  </div>
+
+  <button id="toggleMode" style="display:none;">Basculer en mode Enfant</button>
+
+  <div class="guide" id="emotionGuide" style="display:none;">
+    <!-- Guide texte injecté ici -->
+  </div>
+
+  <a class="home-button" href="https://visionvibrancy.com">Retourner sur le site Vision Vibrancy</a>
 
   <script>
+    const form = document.getElementById('emotionForm');
+    const message = document.getElementById('message-validation');
+    const wheel = document.getElementById('emotionWheel');
+    const toggleBtn = document.getElementById('toggleMode');
+    const guide = document.getElementById('emotionGuide');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const data = {
+        prenom: form.prenom.value,
+        nom: form.nom.value,
+        email: form.email.value,
+        newsletter: form.newsletter.checked ? "Oui" : "Non"
+      };
+
+      fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+      }).then(() => {
+        form.style.display = "none";
+        message.textContent = "Bienvenue ! Tu peux maintenant explorer la roue ci-dessous.";
+        wheel.style.display = "block";
+        toggleBtn.style.display = "block";
+        guide.style.display = "block";
+        initWheel();
+      }).catch(() => {
+        message.textContent = "Une erreur est survenue. Réessaie plus tard.";
+      });
+    });
+
     const emotionsAdultes = [
-      { nom: "Joie", guide: "Accueille cette vibration, elle t’indique un alignement intérieur. Nourris-la avec gratitude et partage." },
-      { nom: "Tristesse", guide: "Elle te parle de perte ou de besoin de douceur. Autorise-toi à ralentir, à écouter." },
-      { nom: "Colère", guide: "Elle signale une injustice ou un besoin non respecté. Elle est ta boussole vers tes limites." },
-      { nom: "Peur", guide: "Elle cherche à te protéger. Écoute-la avec présence sans lui donner les clés." },
-      { nom: "Dégoût", guide: "Il t’alerte sur ce qui ne te convient plus. Prends-en compte, sans rester figé." },
-      { nom: "Surprise", guide: "Elle ouvre une porte nouvelle. Sois curieuse, même dans l’inattendu." },
-      { nom: "Amour", guide: "C’est ton état naturel. Tu peux t’y reconnecter à tout moment." },
-      { nom: "Honte", guide: "Elle parle de ton image intérieure. Tu n’as rien à cacher." },
-      { nom: "Culpabilité", guide: "Elle révèle un conflit de valeur. Pardonne-toi et réajuste." },
-      { nom: "Fierté", guide: "Elle te montre ce que tu honores en toi. Laisse-la rayonner." },
-      { nom: "Ennui", guide: "Un appel à créer du nouveau. Que peux-tu explorer aujourd’hui ?" },
-      { nom: "Espoir", guide: "Il t’aide à garder le cap. Appuie-toi sur lui, avec confiance." },
+      { label: "Joie", guide: "La joie t’invite à savourer l’instant présent…" },
+      { label: "Tristesse", guide: "La tristesse t’invite à ralentir, à te reconnecter…" },
+      { label: "Colère", guide: "La colère révèle un besoin non respecté…" },
+      { label: "Peur", guide: "La peur protège mais peut aussi t’alerter d’un blocage…" },
+      { label: "Dégoût", guide: "Le dégoût sert à poser tes limites…" },
+      { label: "Surprise", guide: "La surprise ouvre une porte vers le changement…" },
+      { label: "Culpabilité", guide: "La culpabilité montre que tes valeurs ont été heurtées…" },
+      { label: "Honte", guide: "La honte parle de ton besoin d’appartenance…" },
+      { label: "Fierté", guide: "Sois fière de toi, même pour les petits pas." },
+      { label: "Sérénité", guide: "Un moment de calme… Respire et profite." },
+      { label: "Amour", guide: "L’amour relie, nourrit, guérit." },
+      { label: "Frustration", guide: "Elle t’indique une attente non comblée." }
     ];
 
     const emotionsEnfants = [
-      { nom: "😊 Joie", guide: "Tu ressens du bonheur ! Partage-le autour de toi 💛" },
-      { nom: "😢 Tristesse", guide: "Tu peux pleurer si tu veux. Ça fait du bien 💧" },
-      { nom: "😡 Colère", guide: "Tu as besoin de dire stop ? Respire fort 🔥" },
-      { nom: "😨 Peur", guide: "Prends un adulte par la main et parle-lui 👋" },
-      { nom: "😖 Dégoût", guide: "Tu n’aimes pas ça ? Tu peux dire non 💬" },
-      { nom: "😲 Surprise", guide: "Wahou, c’est inattendu ! Respire et observe 🌟" },
-      { nom: "❤️ Amour", guide: "Tu es entourée de douceur. Câline-toi 🧸" },
-      { nom: "🙈 Honte", guide: "Tout va bien. Tu as le droit d’être toi 💫" },
-      { nom: "😔 Culpabilité", guide: "Tu peux dire pardon et te pardonner 💕" },
-      { nom: "🎉 Fierté", guide: "Bravo ! Tu peux célébrer 🎊" },
-      { nom: "😐 Ennui", guide: "Et si tu inventais un jeu ? 🎨" },
-      { nom: "🌈 Espoir", guide: "Demande un câlin et imagine un arc-en-ciel 🌈" },
+      { label: "Joie 😊", guide: "Tu te sens bien ! Tu peux dessiner ce que tu ressens." },
+      { label: "Tristesse 😢", guide: "Tu peux pleurer, c’est normal. Et après, un câlin ?" },
+      { label: "Colère 😡", guide: "Tape dans un coussin ou saute ! Ça aide." },
+      { label: "Peur 😨", guide: "Demande à un adulte de rester avec toi." },
+      { label: "Dégoût 🤢", guide: "Tu peux dire ce que tu n’aimes pas." },
+      { label: "Surprise 😲", guide: "Waouh ! Parle à quelqu’un de ce qui t’étonne." },
+      { label: "Culpabilité 😔", guide: "Tu peux dire pardon si tu veux." },
+      { label: "Honte 😳", guide: "Respire. Tu n’es pas seul.e." },
+      { label: "Fierté 😎", guide: "Bravo ! Tu as fait quelque chose de super." },
+      { label: "Calme 😌", guide: "Reste tranquille un petit moment." },
+      { label: "Amour ❤️", guide: "Fais un câlin à quelqu’un !" },
+      { label: "Frustration 😤", guide: "Explique pourquoi tu n’es pas content.e." }
     ];
 
     let modeEnfant = false;
 
-    function renderWheel() {
-      const wheel = document.getElementById("wheel");
-      const emotions = modeEnfant ? emotionsEnfants : emotionsAdultes;
+    function initWheel() {
+      const data = modeEnfant ? emotionsEnfants : emotionsAdultes;
       wheel.innerHTML = "";
-      emotions.forEach((emo, i) => {
-        const angle = (i / emotions.length) * 360;
+      const angle = 360 / data.length;
+
+      data.forEach((emo, i) => {
         const btn = document.createElement("button");
-        btn.textContent = emo.nom;
         btn.className = "emotion-button";
-        btn.style.transform = `rotate(${angle}deg) translate(10em) rotate(-${angle}deg)`;
-        btn.onclick = () => showGuide(emo.guide);
+        btn.textContent = emo.label;
+        const rotation = angle * i;
+        btn.style.transform = `translate(-50%, -50%) rotate(${rotation}deg) translateY(-10em) rotate(-${rotation}deg)`;
+        btn.onclick = () => guide.textContent = emo.guide;
         wheel.appendChild(btn);
       });
     }
 
-    function showGuide(text) {
-      const guide = document.getElementById("guide");
-      guide.innerHTML = `<p>${text}</p>`;
-      guide.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    document.getElementById("toggleMode").onclick = () => {
+    toggleBtn.onclick = () => {
       modeEnfant = !modeEnfant;
-      document.getElementById("toggleMode").textContent = modeEnfant
-        ? "Passer en mode adultes"
-        : "Passer en mode enfants";
-      renderWheel();
+      toggleBtn.textContent = modeEnfant ? "Basculer en mode Adulte" : "Basculer en mode Enfant";
+      initWheel();
+      guide.textContent = "";
     };
-
-    window.onload = renderWheel;
   </script>
 </body>
 </html>
